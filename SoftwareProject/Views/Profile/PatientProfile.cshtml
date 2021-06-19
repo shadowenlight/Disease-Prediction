@@ -1,0 +1,109 @@
+﻿@using SoftwareProject.Models.EntityFramework
+@model Patient
+@{
+    ViewBag.Title = "PatientProfile";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+<link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/assets/css/Profile.css" rel="stylesheet" />
+
+
+<div class="container" style="margin-top: -700px;">
+    
+    <div class="row gutters">
+       
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            
+            <div class="card h-100">
+                <div class="card-body">
+                    
+                    <div class="account-settings">
+                        <div class="user-profile">
+
+                            <div class="user-avatar">
+
+                                <img src="~/assets/img/anonim-foto.jpg" />
+                            </div>
+                            
+                            <h5 class="user-name">@Model.Name  @Model.Surname</h5>
+                            <h6 class="user-email">@Model.Email</h6>
+                        </div>
+                        <div class="about">
+                            <a href="/Profile/PastOperations/@Model.Id">Appointments</a>
+                            <p>You can view your all appointments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Patient Details</h6>
+                            
+                            
+                        </div>
+                        
+                        @using (Html.BeginForm("UpdatePatient", "Profile", FormMethod.Post))
+                        {
+                            @ViewBag.UpdatedMessage
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Name)
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @readonly = "readonly" })
+
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Surname)
+                                    @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", @readonly = "readonly" })
+
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Password)
+                                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Email)
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.IdNumber)
+                                    @Html.TextBoxFor(x => x.IdNumber, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            @Html.HiddenFor(x => x.Id)
+
+                            <br />
+                            <br />
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        }
+
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

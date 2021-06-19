@@ -1,0 +1,319 @@
+﻿
+@model SoftwareProject.Models.EntityFramework.ViewModel2
+   @{ 
+       List<SelectListItem> hospitalList = new List<SelectListItem>();
+       foreach (var item in Model.hospitals)
+       {
+           hospitalList.Add(new SelectListItem() { Text = item.Name, Value = item.Id.ToString() });
+       }
+   }
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="~/assets/vendor/select2/select2.min.css" rel="stylesheet" />
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link href="~/assets/css/Prediction.css" rel="stylesheet" />
+    <link href="~/assets/css/Login.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <title>Diagnosis</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+
+    <!-- Template Main CSS File --
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Mediag</title>
+
+    <!-- Icons font CSS-->
+    <link href="~/assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <!-- Vendor CSS-->
+    <link href="~/assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/assets/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+
+    <link href="~/assets/css/Appointmentcss.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto"><a style="text-decoration:none;" href="/Home/Index" >Diagnosis</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar order-last order-lg-0" style=" font-size: 50px;">
+                <ul>
+                    <li><a class="nav-link scrollto active" style="text-decoration:none;" href="/Home/Index">Home</a></li>
+                    <li><a class="nav-link scrollto" style="text-decoration:none;" href="/Home/Index/#about">About</a></li>
+                    <li><a class="nav-link scrollto" style="text-decoration:none;" href="/Home/Index/#contact">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a style="text-decoration:none;" href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a style="text-decoration:none;" href="/Profile/PatientProfile/@Model.patients.Id">Informations</a></li>
+                                <li><a style="text-decoration:none;" href="/Profile/PastOperations/@Model.patients.Id">My Appointments</a></li>
+                                <li><a style="text-decoration:none;" href="#">Chat With Doctor</a></li>
+
+                            </ul>
+                        </li>
+                    }
+
+                    <li><a class="nav-link scrollto" style="text-decoration:none;" href="/Appointment/AppointmentIndex/@Model.patients.Id">Make An Appointment</a></li>
+                    <li><a class="nav-link scrollto" style="text-decoration:none;" href="/Prediction/Index/@Model.patients.Id">Make A Prediction</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+            @if (User.Identity.IsAuthenticated == false)
+            {
+                <a href="/Security/Login" class="appointment-btn scrollto" style="text-decoration:none;"><span class="d-none d-md-inline">Login</span></a>
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="/Security/Logout" id="abcd" class="appointment-btn scrollto" style="text-decoration:none;"><span class="d-none d-md-inline">Logout</span></a>
+            }
+
+
+
+        </div>
+    </header><!-- End Header -->
+    <main style="margin-top:150px;">
+
+        <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+            <div class="wrapper wrapper--w680">
+                <div class="card card-4">
+                    <div class="card-body">
+                        <h2 class="title">Appointment Form</h2>
+                        <h3 style="color:red">@TempData["failed"]</h3>
+                        <h3 style="color:red">@TempData["fail"]</h3>
+                        <br />
+                        <form method="post">
+
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+
+                                        <label class="label">first name</label>
+                                        <input class="input--style-4" type="text" name="PatientName" value="@Model.patients.Name" readonly="readonly">
+
+
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">last name</label>
+                                        <input class="input--style-4" type="text" name="PatientSurname" value="@Model.patients.Surname" readonly="readonly">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Email</label>
+                                        <input class="input--style-4" type="text" name="PatientEmail" value="@Model.patients.Email" readonly="readonly">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">DiagnosisName</label>
+                                        <input class="input--style-4" type="text" name="IllnessName" value="@Model.illness.Name" readonly="readonly">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Appointment Date</label>
+                                        <div class="input-group-icon">
+                                            <input class="input--style-4 js-datepicker" type="text" name="AppDate">
+                                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="input-group">
+                                <label class="label">Hospital Name</label>
+                                <div class="rs-select2 js-select-simple select--no-search" style="margin-top:30px;margin-left:-120px;">
+
+                                    <select name="HospitalName" id="HospitalName">
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+
+
+                                        @foreach (var item in Model.hospitals)
+                                        {
+                                            <option data-rel="@item.Id">@item.Name</option>
+                                        }
+
+                                    </select>
+
+
+
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="label">Department Name</label>
+                                <div class="rs-select2 js-select-simple select--no-search" style="margin-top:30px;margin-left:-150px; ">
+                                    <select name="DepartmentName" id="DepartmentName">
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+
+
+
+                                        @foreach (var item in Model.departments)
+                                        {
+                                            <option id="@item.HId" data-rel="@item.Id">@item.Name</option>
+                                        }
+
+
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Doctor Name</label>
+                                <div class="rs-select2 js-select-simple select--no-search" style="margin-top:30px;margin-left:-110px;">
+                                    <select name="DoctorName" id="DoctorName">
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+
+                                        @foreach (var item in Model.doctors)
+                                        {
+                                            <option id="@item.DId" data-rel="@item.Id">@item.Name @item.Surname</option>
+                                        }
+
+
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="label">Appointment Time</label>
+                                <div class="rs-select2 js-select-simple select--no-search" style="margin-top:30px;margin-left:-150px;">
+                                    <select name="DappTime" id="DappTime">
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+                                        @foreach (var item in Model.dAppDates)
+                                        {
+                                            <option id="@item.Doctor_id">@item.Time</option>
+                                        }
+
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                            @Html.HiddenFor(x => x.patients.Id)
+                            <div class="p-t-15">
+                                <button class="btn btn--radius-2 btn--blue" type="submit">Make Appointment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+
+        <script>
+  
+             $(function() {
+               $("#HospitalName").change(function() {
+               $("#DepartmentName option").hide();
+               $("#DepartmentName option[id='" + $(":selected", this).data("rel") + "']").show();
+               
+  });
+})
+                $(function() {
+               $("#DepartmentName").change(function() {
+               $("#DoctorName option").hide();
+               $("#DoctorName option[id='" + $(":selected", this).data("rel") + "']").show();
+               
+  });
+})
+                   $(function() {
+               $("#DoctorName").change(function() {
+               $("#DappTime option").hide();
+               $("#DappTime option[id='" + $(":selected", this).data("rel") + "']").show();
+               
+  });
+})
+
+        </script>
+    </main>
+    <div class="footer2">
+
+
+
+
+        <!-- ======= Footer ======= -->
+        <footer>
+
+
+
+            <div class="container d-md-flex py-4">
+
+                <div class="me-md-auto text-center text-md-start">
+                    <div class="copyright">
+                        &copy; Copyright <strong><span>Diagnosis</span></strong>. All Rights Reserved
+                    </div>
+
+                </div>
+
+            </div>
+        </footer>
+        <!-- End Footer -->
+    </div>
+    <!-- Jquery JS-->
+    <script src="~/assets/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    
+    <script src="~/assets/vendor/datepicker/moment.min.js"></script>
+
+    <script src="~/assets/vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+
+    <script src="~/assets/js/global.js"></script>
+
+
+</body>
+
+
+</html>
+<!-- end document-->

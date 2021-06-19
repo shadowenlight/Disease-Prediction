@@ -1,0 +1,364 @@
+﻿@using SoftwareProject.Models.EntityFramework
+    @model ViewModel
+    @{
+        Layout = null;
+    }
+
+<link href="~/assets/css/Profile.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="~/assets/css/styleee.css" rel="stylesheet" />
+<link href="~/assets/css/styleee.min.css" rel="stylesheet" />
+<link href="~/assets/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <!-- Custom CSS -->
+    <link href="~/assets/css/styleee.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/img/favicon.png">
+    <title>Nice admin Template - The Ultimate Multipurpose admin template</title>
+    <link href="~/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link href="~/assets/css/styleee.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<body>
+
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+
+
+                <div class="navbar-brand">
+                    <a href="index.html" class="logo">
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="~/assets/img/Logo.png" style="margin-left:50px; height:150px; margin-top:-50px;" alt="homepage" />
+
+                            <!-- Light Logo icon -->
+
+                        </b>
+                        <br />
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+
+                    </a>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" style="text-decoration:none;">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Doctor/DoctorIndex/@Model.doctor.Id" aria-expanded="false">
+                                <i class="material-icons" style="text-decoration:none;">home</i>
+                                <span class="hide-menu">Home</span>
+                            </a>
+                        </li>
+
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Doctor/DoctorProfile/@Model.doctor.Id" aria-expanded="false">
+                                <i class="material-icons" style="text-decoration:none;">person</i>
+                                <span class="hide-menu">Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Doctor/DoctorChat/@Model.doctor.Id" aria-expanded="false">
+                                <i class="material-icons" style="text-decoration:none;">chat</i>
+                                <span class="hide-menu">Chat Box</span>
+                            </a>
+                        </li>
+
+
+
+                        <li class="sidebar-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+
+
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Security/DoctorLogout" aria-expanded="false">
+                                    <i class="material-icons" style="text-decoration:none;">exit_to_app</i>
+
+
+                                    <span class="hide-menu">Logout</span>
+                                </a>
+                            }
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <div class="page-wrapper " style="margin-left:250px; margin-top:-50px;">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-5 align-self-center">
+                    <h3>@ViewBag.Success</h3>
+                    <h3>@ViewBag.Fail</h3>
+                </div>
+
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <!-- Row -->
+            <div class="row">
+                <!-- Column -->
+                <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <center class="m-t-30">
+                                <img src="~/assets/img/anonim-foto.jpg" class="rounded-circle" width="150" />
+
+                                <h4 class="card-title m-t-10">@Model.patient.Name @Model.patient.Surname</h4>
+                                <h6 class="card-subtitle">@Model.patient.Email</h6>
+
+                            </center>
+                        </div>
+                        <div>
+                            <hr>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Column -->
+                <!-- Column -->
+
+                <div class="col-lg-8 col-xlg-9 col-md-7">
+                    <div class="card">
+                        <div class="card-body">
+
+                            @using (Html.BeginForm("OperationIndex", "Operation", FormMethod.Post))
+                            {
+
+                                @ViewBag.UpdatedMessage
+                            <div class="form-group">
+
+
+                                <div class="col-md-12">
+                                    @Html.HiddenFor(x => x.patient.Email)
+                                    @Html.HiddenFor(x => x.patient.Email, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.LabelFor(x => x.patient.Name)
+                                    @Html.TextBoxFor(x => x.patient.Name, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                                <div class="form-group">
+
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(x => x.patient.Surname)
+                                        @Html.TextBoxFor(x => x.patient.Surname, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(x => x.ilness.Name)
+                                        @Html.TextBoxFor(x => x.ilness.Name, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <span class="label-input100">Select Community</span>
+                                    <select class="input100" id="community" name="community">
+                                        <option value="">Select Community</option>
+                                        <option>Acne Community</option>
+                                        <option>AIDS Community</option>
+                                        <option>Alcoholic hepatitis Community</option>
+                                        <option>Allergy Community</option>
+                                        <option>Arthritis Community</option>
+                                        <option>Bronchial Asthma Community</option>
+                                        <option>Cervical spondylosis Community</option>
+                                        <option>Chicken pox Community</option>
+                                        <option>Chronic cholestasis Community</option>
+                                        <option>Dengue Community</option>
+                                        <option>Diabetes Community</option>
+                                        <option>Drug Reaction Community</option>
+                                        <option>Fungal infection Community</option>
+                                        <option>Gastroenteritis Community</option>
+                                        <option>GERD Community</option>
+                                        <option>hepatitis A Community</option>
+                                        <option>Hepatitis B Community</option>
+                                        <option>Hepatitis C Community</option>
+                                        <option>Hepatitis D Community</option>
+                                        <option>Hepatitis E Community</option>
+                                        <option>Hypertension Community</option>
+                                        <option>Hyperthyroidism Community</option>
+                                        <option>Hypoglycemia Community</option>
+                                        <option>Hypothyroidism Community</option>
+                                        <option>Impetigo Community</option>
+                                        <option>Jaundice Community</option>
+                                        <option>Malaria Community</option>
+                                        <option>Migraine Community</option>
+                                        <option>Osteoarthristis Community</option>
+                                        <option>Paralysis (brain hemorrhage) Community</option>
+                                        <option>Peptic ulcer diseae Community</option>
+                                        <option>Pneumonia Community</option>
+                                        <option>Psoriasis Community</option>
+                                        <option>Tuberculosis Community</option>
+                                        <option>Typhoid Community</option>
+                                        <option>Urinary tract infection Community</option>
+                                        <option>Varicose veins Community</option>
+                                        <option>(vertigo) Paroymsal  Positional Vertigo Community</option>
+
+                                    </select>
+                                    <span class="focus-input100"></span>
+                                </div>
+                                @Html.HiddenFor(x => x.ilness.Id)
+                                @Html.HiddenFor(x => x.doctor.Id)
+
+                                <br />
+                                <br />
+                                <button type="submit" class="btn btn-primary">Save Operation</button>
+
+                            }
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column -->
+            </div>
+            <!-- Row -->
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <!-- Bootstrap tether Core JavaScript -->
+
+    <script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/assets/libs/popper.js/dist/popper.min.js"></script>
+    <script src="~/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- slimscrollbar scrollbar JavaScript -->
+
+    <script src="~/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="~/assets/js/waves.js"></script>
+    <script src="~/assets/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/assets/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/assets/js/custom.min.js"></script>
+    <script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+
+    <script src="~/assets/js/waves.js"></script>
+    <!--Menu sidebar -->
+
+    <script src="~/assets/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+
+    <script src="~/assets/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="~/assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+
+    <script src="~/assets/js/dashboard1.js"></script>
+</body>
+
+</html>

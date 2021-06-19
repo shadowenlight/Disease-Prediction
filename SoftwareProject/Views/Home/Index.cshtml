@@ -1,0 +1,220 @@
+﻿@using SoftwareProject.Models.EntityFramework
+@model Patient
+@{
+    Layout = null;
+}
+
+<link href="~/assets/css/Login.css" rel="stylesheet" />
+<link href="~/assets/css/style.css" rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="~/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="~/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="~/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+<link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title >Diagnosis</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+
+
+    <!-- Template Main CSS File -->
+
+
+
+</head>
+
+<body>
+
+
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto" ><a href="/Home/Index" style="text-decoration:none;">Diagnosis</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a href="#" style="text-decoration:none;"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="/Profile/PatientProfile/@Model.Id" style="text-decoration:none;">Informations</a></li>
+                                <li><a href="/Profile/PastOperations/@Model.Id" style="text-decoration:none;">My Appointments</a></li>
+                                <li><a href="#" style="text-decoration:none;">Chat With Doctor</a></li>
+
+                            </ul>
+                        </li>
+                    }
+
+                    <li><a class="nav-link scrollto" href="/Appointment/AppointmentIndex/@Model.Id">Make An Appointment</a></li>
+                    <li><a class="nav-link scrollto" href="/Prediction/Index/@Model.Id">Make A Prediction</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+            @if (User.Identity.IsAuthenticated == false)
+            {
+                <a href="/Security/Login" class="appointment-btn scrollto" style="text-decoration:none;"><span class="d-none d-md-inline">Login</span></a>
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                
+                <a href="/Security/Logout" id="abcd" class="appointment-btn scrollto" style="text-decoration:none;"><span class="d-none d-md-inline">Logout</span></a>
+            }
+
+
+
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+            <h1>Welcome to Diagnosis</h1>
+            <h2></h2>
+            <a href="#about" style="text-decoration:none;" class="btn-get-started scrollto">Get Started</a>
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= Why Us Section ======= -->
+        <section id="why-us" class="why-us">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-4 d-flex align-items-stretch">
+                        <div class="content">
+                            <h3>Why Choose Diagnosis?</h3>
+                            <p>
+                                In many points, Diagnosis provides great convenience for you. It is a machine learning-based web platform that guides you to a prediction about your disease when you enter your symptoms.
+                                Afterward, you can make an appointment with a doctor by going to the appointment page, and  you can join a community where you are automatically guided about your disease predicted by the system.
+                            </p>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-8 d-flex align-items-stretch">
+                        <div class="icon-boxes d-flex flex-column justify-content-center">
+                            <div class="row">
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bx bx-receipt"></i>
+                                        <h4>Prediction</h4>
+                                        <p>You can see a prediction of your disease from our machine learning-based web platform by entering your symptoms.</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bx bx-cube-alt"></i>
+                                        <h4>Appointment</h4>
+                                        <p>After the prediction of your disease is made, you can make an appointment with the doctor and department you want from the hospitals on our website.</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bx bx-images"></i>
+                                        <h4>Contact</h4>
+                                        <p>For your questions and problems, you can contact the specified e-mail address mediagnosis@hotmail.com </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End .content-->
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Why Us Section -->
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+                        <a href="https://www.youtube.com/watch?v=8Y4EpLipqD4" class="glightbox play-btn mb-4"></a>
+                    </div>
+
+                    <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                        <h3>OUR PARTNERS</h3>
+                        <p>.</p>
+
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-fingerprint"></i></div>
+                            <h4 class="title"><a >Patient Card</a></h4>
+                            <p class="description">The patient card of the patients who come to our hospital is created and their information is recorded.</p>
+                        </div>
+
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-gift"></i></div>
+                            <h4 class="title"><a >Community</a></h4>
+                            <p class="description">Once your disease is identified, you will be assigned to a community by our doctors.</p>
+                        </div>
+
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                            <h4 class="title"><a >Chat with Doctor</a></h4>
+                            <p class="description">When you have questions, a chat environment is provided where you can communicate with the doctor you made an appointment with.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
+      
+      
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+    
+
+        <div class="container d-md-flex py-4">
+
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Diagnosis</span></strong>. All Rights Reserved
+                </div>
+
+            </div>
+
+        </div>
+    </footer><!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/assets/vendor/purecounter/purecounter.js"></script>
+    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+
+</body>
+
+</html>

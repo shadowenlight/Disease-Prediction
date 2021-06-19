@@ -1,0 +1,172 @@
+﻿@using SoftwareProject.Models.EntityFramework
+@model Doctor
+@{
+    ViewBag.Title = "DoctorProfile";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+
+<link href="~/assets/css/Profile.css" rel="stylesheet" />
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <!-- Custom CSS -->
+    <link href="~/assets/css/styleee.min.css" rel="stylesheet">
+
+</head>
+
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper "style="margin-left:250px; margin-top:-50px;">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Profile</h4>
+            </div>
+            
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <center class="m-t-30">
+                            <img src="~/assets/img/anonim-foto.jpg" class="rounded-circle" width="150" />
+
+                            <h4 class="card-title m-t-10">@Model.Name @Model.Surname</h4>
+                            <h6 class="card-subtitle">@Model.Email</h6>
+
+                        </center>
+                    </div>
+                    <div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+
+            <div class="col-lg-8 col-xlg-9 col-md-7">
+                <div class="card">
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("UpdateDoctor", "Doctor", FormMethod.Post))
+                        {
+
+                            @ViewBag.UpdatedMessage
+                            <div class="form-group">
+
+                                <div class="col-md-12">
+                                    @Html.LabelFor(x => x.Name)
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-12">
+                                    @Html.LabelFor(x => x.Surname)
+                                    @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-12">
+                                    @Html.LabelFor(x => x.Password)
+                                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-12">
+                                    @Html.LabelFor(x => x.Email)
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            @Html.HiddenFor(x => x.Id)
+
+                            <br />
+                            <br />
+                            <button type="submit" class="btn btn-primary">Update</button>
+
+                        }
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column -->
+        </div>
+        <!-- Row -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<!-- Bootstrap tether Core JavaScript -->
+
+<script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+
+<script src="~/assets/libs/popper.js/dist/popper.min.js"></script>
+<script src="~/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- slimscrollbar scrollbar JavaScript -->
+
+<script src="~/assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="~/assets/js/waves.js"></script>
+<script src="~/assets/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="~/assets/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="~/assets/js/custom.min.js"></script>

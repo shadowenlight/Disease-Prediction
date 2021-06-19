@@ -1,0 +1,23 @@
+﻿
+@model SoftwareProject.Models.EntityFramework.Patient
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<link href="~/assets/css/Validation.css" rel="stylesheet" />
+<div class="box">
+    @ViewBag.Message
+    @ViewBag.Message2
+    @TempData["signup"]
+    <form method="post" action="">
+        <input type="text" name="Email" placeholder="Email">
+        @Html.ValidationMessageFor(x => x.Email)
+        <input type="password" name="Password" placeholder="Password">
+        @Html.ValidationMessageFor(x => x.Password)
+        <button type="submit">Login</button>
+        <input type="button" onclick="window.location.href='/Security/SignUp'" name="" value="Sign Up">
+        <a href="/Security/DoctorLogin">Login As A Doctor</a>
+    </form>
+
+</div>
+
